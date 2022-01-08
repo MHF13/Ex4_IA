@@ -1,6 +1,6 @@
 ﻿using Pada1.BBCore;
 using UnityEngine;
-
+using System.Linq;
 namespace BBUnity.Conditions
 {
     /// <summary>
@@ -27,6 +27,14 @@ namespace BBUnity.Conditions
         /// <returns>True if the magnitude between the gameobject and de target is lower that the given distance.</returns>
         public override bool Check()
 		{
+            if ((gameObject.transform.position - target.transform.position).sqrMagnitude < closeDistance * closeDistance)
+            {
+                for (int i = 0; i < GameObject.FindGameObjectsWithTag("Cop").Where(x => x.GetComponent<Moves>().found == false).Count(); i++)
+                {
+                    GameObject.FindGameObjectsWithTag("Cop").Where(x => x.GetComponent<Moves>().found == false).ElementAt(i).GetComponent<Moves>().found = true;
+                }
+            }
+            
             return (gameObject.transform.position - target.transform.position).sqrMagnitude < closeDistance * closeDistance;
 		}
     }

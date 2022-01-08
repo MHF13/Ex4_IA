@@ -1,6 +1,7 @@
 ﻿using Pada1.BBCore.Tasks;
 using Pada1.BBCore;
 using UnityEngine;
+using System.Linq;
 
 namespace BBUnity.Actions
 {
@@ -27,7 +28,13 @@ namespace BBUnity.Actions
         {
             if (targetGameobject == null)
                 targetGameobject = gameObject;
-            targetGameobject.SendMessage(methodName);
+
+            GameObject.FindGameObjectsWithTag("Cop").Where(x => x.GetComponent<Moves>().found).First().GetComponent<Moves>().BBSeekRobber();
+
+            for(int i = 0; i < GameObject.FindGameObjectsWithTag("Cop").Where(x => x.GetComponent<Moves>().found ==false).Count(); i++)
+            {
+                GameObject.FindGameObjectsWithTag("Cop").Where(x => x.GetComponent<Moves>().found == false).ElementAt(i).GetComponent<Moves>().found = true;
+            }
         }
 
         /// <summary>Method of Update of SendMessage.</summary>

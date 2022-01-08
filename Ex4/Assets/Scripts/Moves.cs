@@ -34,7 +34,10 @@ public class Moves : MonoBehaviour
         target = treasure;
         found = true;
     }
-
+    public void Change()
+    {
+        found = true;
+    }
     public void Wander()
     {
         float radius = 5;
