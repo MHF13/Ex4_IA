@@ -18,8 +18,10 @@ MonoBehaviour:
     id=\"0\" guid=\"220ae7828e15b8b489f2ee3c7e83afa2\" nextId=\"15\">\r\n      <root>\r\n       
     <SequenceNode id=\"1\" />\r\n      </root>\r\n      <inputParams>\r\n       
     <inputValues>\r\n          <entry name=\"target\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"False\" />\r\n          <entry name=\"Tresor\" type=\"UnityEngine.Transform\"
     isBlackboard=\"False\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
     <outputParams>\r\n        <outputValues>\r\n          <entry name=\"cop\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" />\r\n          <entry name=\"Founder\" type=\"UnityEngine.GameObject\"
     isBlackboard=\"True\" />\r\n        </outputValues>\r\n      </outputParams>\r\n     
     <localParams />\r\n    </BehaviorTree>\r\n    <SequenceNode id=\"1\">\r\n     
     <children>\r\n        <elem>\r\n          <RepeatUntilSuccess id=\"2\" />\r\n       
@@ -35,52 +37,59 @@ MonoBehaviour:
     </condition>\r\n      <inputParams>\r\n        <inputValues>\r\n          <entry
     name=\"target\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"target\"
     />\r\n          <entry name=\"closeDistance\" type=\"System.Single\" isBlackboard=\"False\"
-    value=\"2,65\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
-    <outputParams />\r\n      <localParams />\r\n    </ConditionNode>\r\n    <PrioritySelectorNode
-    id=\"10\">\r\n      <children>\r\n        <elem>\r\n          <GuardAndNode>\r\n           
-    <guard>\r\n              <ConditionEvalNode id=\"11\" />\r\n            </guard>\r\n           
-    <child>\r\n              <ActionNode id=\"6\" />\r\n            </child>\r\n         
-    </GuardAndNode>\r\n        </elem>\r\n        <elem>\r\n          <GuardAndNode>\r\n           
-    <guard>\r\n              <ConditionEvalNode id=\"14\" />\r\n            </guard>\r\n           
-    <child>\r\n              <ActionNode id=\"13\" />\r\n            </child>\r\n         
-    </GuardAndNode>\r\n        </elem>\r\n      </children>\r\n      <inputParams
-    />\r\n      <outputParams />\r\n      <localParams />\r\n    </PrioritySelectorNode>\r\n   
-    <ConditionEvalNode id=\"0\" policy=\"ATOMIC_CHECK\" name=\"Perception/IsTargetClose\">\r\n     
+    value=\"3\" />\r\n          <entry name=\"Tresor\" type=\"UnityEngine.Transform\"
+    isBlackboard=\"True\" blackboard=\"Tresor\" />\r\n          <entry name=\"Founder\"
+    type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Founder\"
+    />\r\n        </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n     
+    <localParams />\r\n    </ConditionNode>\r\n    <PrioritySelectorNode id=\"10\">\r\n     
+    <children>\r\n        <elem>\r\n          <GuardAndNode>\r\n            <guard>\r\n             
+    <ConditionEvalNode id=\"11\" />\r\n            </guard>\r\n            <child>\r\n             
+    <ActionNode id=\"6\" />\r\n            </child>\r\n          </GuardAndNode>\r\n       
+    </elem>\r\n        <elem>\r\n          <GuardAndNode>\r\n            <guard>\r\n             
+    <ConditionEvalNode id=\"14\" />\r\n            </guard>\r\n            <child>\r\n             
+    <ActionNode id=\"13\" />\r\n            </child>\r\n          </GuardAndNode>\r\n       
+    </elem>\r\n      </children>\r\n      <inputParams />\r\n      <outputParams
+    />\r\n      <localParams />\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode
+    id=\"0\" policy=\"ATOMIC_CHECK\" name=\"Perception/IsTargetClose\">\r\n     
     <inputParams />\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
     <ConditionEvalNode id=\"11\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"Perception/IsTargetClose\">\r\n     
     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"target\" type=\"UnityEngine.GameObject\"
     isBlackboard=\"True\" blackboard=\"cop\" />\r\n          <entry name=\"closeDistance\"
-    type=\"System.Single\" isBlackboard=\"False\" value=\"2,65\" />\r\n        </inputValues>\r\n     
-    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
-    <ActionNode id=\"6\" action=\"GameObject/SendMessage\">\r\n      <inputParams>\r\n       
-    <inputValues>\r\n          <entry name=\"methodName\" type=\"System.String\"
-    isBlackboard=\"False\" value=\"ReceiveMessage\" />\r\n          <entry name=\"game
-    object\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"target\"
+    type=\"System.Single\" isBlackboard=\"False\" value=\"3\" />\r\n          <entry
+    name=\"Tresor\" type=\"UnityEngine.Transform\" isBlackboard=\"False\" />\r\n         
+    <entry name=\"Founder\" type=\"UnityEngine.GameObject\" isBlackboard=\"False\"
     />\r\n        </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n     
-    <localParams />\r\n    </ActionNode>\r\n    <ConditionEvalNode id=\"14\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\"
-    name=\"AlwaysTrue\">\r\n      <inputParams />\r\n      <outputParams />\r\n     
-    <localParams />\r\n    </ConditionEvalNode>\r\n    <ActionNode id=\"13\" action=\"Cops/FindClosestCop\">\r\n     
-    <inputParams />\r\n      <outputParams>\r\n        <outputValues>\r\n         
+    <localParams />\r\n    </ConditionEvalNode>\r\n    <ActionNode id=\"6\" action=\"GameObject/SendMessage\">\r\n     
+    <inputParams>\r\n        <inputValues>\r\n          <entry name=\"methodName\"
+    type=\"System.String\" isBlackboard=\"False\" value=\"ReceiveMessage\" />\r\n         
     <entry name=\"game object\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
-    blackboard=\"cop\" />\r\n        </outputValues>\r\n      </outputParams>\r\n     
-    <localParams />\r\n    </ActionNode>\r\n  </runtimeInfo>\r\n  <editorInfo>\r\n   
-    <BehaviorTree id=\"0\" _name=\"Robber\" _description=\"\" _removeIfClosed=\"False\">\r\n     
-    <_rootList>\r\n        <elem>\r\n          <SequenceNode id=\"1\" />\r\n       
-    </elem>\r\n        <elem>\r\n          <RepeatUntilSuccess id=\"2\" />\r\n       
-    </elem>\r\n        <elem>\r\n          <RepeatUntilFailed id=\"3\" />\r\n       
-    </elem>\r\n        <elem>\r\n          <ConditionNode id=\"4\" />\r\n       
-    </elem>\r\n        <elem>\r\n          <ActionNode id=\"6\" />\r\n        </elem>\r\n       
-    <elem>\r\n          <PrioritySelectorNode id=\"10\" />\r\n        </elem>\r\n       
-    <elem>\r\n          <ConditionEvalNode id=\"11\" />\r\n        </elem>\r\n       
-    <elem>\r\n          <ActionNode id=\"13\" />\r\n        </elem>\r\n        <elem>\r\n         
-    <ConditionEvalNode id=\"14\" />\r\n        </elem>\r\n      </_rootList>\r\n     
-    <_nodes>\r\n        <nodes>\r\n          <SequenceNode id=\"1\" />\r\n         
-    <RepeatUntilSuccess id=\"2\" />\r\n          <RepeatUntilFailed id=\"3\" />\r\n         
-    <ConditionNode id=\"4\" />\r\n          <ConditionEvalNode id=\"11\" />\r\n         
-    <ActionNode id=\"6\" />\r\n          <ActionNode id=\"13\" />\r\n          <PrioritySelectorNode
-    id=\"10\" />\r\n          <ConditionEvalNode id=\"14\" />\r\n        </nodes>\r\n     
-    </_nodes>\r\n    </BehaviorTree>\r\n    <SequenceNode id=\"1\">\r\n      <_data>\r\n       
-    <data breakpoint=\"0\" selected=\"False\" position=\"457.0505 74.09507\" name=\"Sequence\"
+    blackboard=\"target\" />\r\n          <entry name=\"Tresor\" type=\"UnityEngine.Transform\"
+    isBlackboard=\"True\" blackboard=\"Tresor\" />\r\n        </inputValues>\r\n     
+    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n   
+    <ConditionEvalNode id=\"14\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"AlwaysTrue\">\r\n     
+    <inputParams />\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
+    <ActionNode id=\"13\" action=\"Cops/FindClosestCop\">\r\n      <inputParams />\r\n     
+    <outputParams>\r\n        <outputValues>\r\n          <entry name=\"game object\"
+    type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"cop\" />\r\n       
+    </outputValues>\r\n      </outputParams>\r\n      <localParams />\r\n    </ActionNode>\r\n 
+    </runtimeInfo>\r\n  <editorInfo>\r\n    <BehaviorTree id=\"0\" _name=\"Robber\"
+    _description=\"\" _removeIfClosed=\"False\">\r\n      <_rootList>\r\n       
+    <elem>\r\n          <SequenceNode id=\"1\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <RepeatUntilSuccess id=\"2\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <RepeatUntilFailed id=\"3\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <ConditionNode id=\"4\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <ActionNode id=\"6\" />\r\n        </elem>\r\n        <elem>\r\n          <PrioritySelectorNode
+    id=\"10\" />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode
+    id=\"11\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"13\"
+    />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode id=\"14\"
+    />\r\n        </elem>\r\n      </_rootList>\r\n      <_nodes>\r\n        <nodes>\r\n         
+    <SequenceNode id=\"1\" />\r\n          <RepeatUntilSuccess id=\"2\" />\r\n         
+    <RepeatUntilFailed id=\"3\" />\r\n          <ConditionNode id=\"4\" />\r\n         
+    <ConditionEvalNode id=\"11\" />\r\n          <ActionNode id=\"6\" />\r\n         
+    <ActionNode id=\"13\" />\r\n          <PrioritySelectorNode id=\"10\" />\r\n         
+    <ConditionEvalNode id=\"14\" />\r\n        </nodes>\r\n      </_nodes>\r\n   
+    </BehaviorTree>\r\n    <SequenceNode id=\"1\">\r\n      <_data>\r\n        <data
+    breakpoint=\"0\" selected=\"False\" position=\"457.0505 74.09507\" name=\"Sequence\"
     description=\"Executes all its children in sequence until all of them are successful\"
     cardinality=\"-1\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n         
     <SequenceNode id=\"1\" />\r\n        </data>\r\n      </_data>\r\n    </SequenceNode>\r\n   
